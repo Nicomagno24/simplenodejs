@@ -1,11 +1,11 @@
 const http = require("http")
 const fs = require("fs")
 
-const port = 4000
+const port = 80
 
 http.createServer((request, response) => {
 		
-		let dir = "public/"
+		let dir = "docs/"
 
 		let file = (request.url == "/") ? "index.html" : request.url
 			file = (file.match(/[^.]+(\.[^?#]+)?/) || [])[0]
