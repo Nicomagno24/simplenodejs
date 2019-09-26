@@ -211,7 +211,10 @@
 			// ajax.open("GET", "noticias.json")
 
 			//consume el rss de clarin para obtener las noticias
-			ajax.open("GET", "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.clarin.com%2Frss%2Fdeportes%2F")
+			// ajax.open("GET", "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.clarin.com%2Frss%2Fdeportes%2F")
+
+			//obtiene los datos de un excel publicado con sheety
+			ajax.open("GET", "https://api.sheety.co/32fdde87-054d-4faf-a6aa-a9a4214b5747")
 			ajax.onload = function(){	 // si se ejecuta el onload la peticion fue exitosa
 
 				let response = ajax.response 
@@ -222,7 +225,7 @@
 					let datos = JSON.parse(response)
 
 					
-					datos.items.forEach( function(noticia) {
+					datos.forEach( function(noticia) {
 
 						//manipular los datos individualizados, son los campos del JSON
 						// console.log(`Noticia del dia ${noticia.titulo} \n por ${noticia.autor}`)
@@ -280,6 +283,8 @@
 			}
 
 
+
+
 			function clonarNoticia(noticia){
 
 				let clon = document.querySelector(".noticia").cloneNode(true)
@@ -287,16 +292,16 @@
 
 				clon.classList.remove("d-none")
 
-				let titulo = clon.querySelector("h3").innerText = noticia.title
+				let titulo = clon.querySelector("h3").innerText = noticia.titulo
 				console.log(titulo)
 
-				let autor = clon.querySelector("a").innerText = noticia.author
+				let autor = clon.querySelector("a").innerText = noticia.autor
 				console.log(autor)
 
-				let parrafo = clon.querySelector("p:last-child").innerText = noticia.description
+				let parrafo = clon.querySelector("p:last-child").innerText = noticia.detalle
 				console.log(parrafo)
 
-				let imagen = clon.querySelector("img").src = noticia.enclosure.link
+				let imagen = clon.querySelector("img").src = noticia.imagen
 
 
 				document.querySelector("#ultimas-noticias").appendChild(clon)
@@ -306,14 +311,7 @@
 
 
 
-			//tarea: tomar las noticas del json y hacer una hoja de calculo con google gits o excel, y agregar un par mas de noticias, columna es nombre de una propiedad. 
-
-
-
-
-
-
-
+			//tarea: tomar las noticas del json y hacer una hoja de calculo con google sheets o excel, y agregar un par mas de noticias, columna es nombre de una propiedad. 
 
 		</script>
 
