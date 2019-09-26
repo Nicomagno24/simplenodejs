@@ -1,7 +1,10 @@
+
+
 const http = require("http")
 const fs = require("fs")
 
-const port = 80
+//asigno un puerto como variable de entorno
+const port = process.env.PORT
 
 http.createServer((request, response) => {
 		
